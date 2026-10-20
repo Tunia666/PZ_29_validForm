@@ -22,22 +22,32 @@ if (form) {
     formStatus.classList.remove("form-status--success");
     emailInput.setAttribute("aria-invalid", "false");
     passwordInput.setAttribute("aria-invalid", "false");
+    // Находим необходимые элементы в DOM (если они ещё не найдены в стартовом проекте)
+const loginForm = document.getElementById('login-form');
+const emailInput = document.getElementById('email');
+const passwordInput = document.getElementById('password');
+const emailError = document.getElementById('email-error');
+const passwordError = document.getElementById('password-error');
+const formStatus = document.getElementById('form-status');
 
-    // TODO 1. Получите значения полей:
-    // const email = emailInput.value.trim();
-    // const password = passwordInput.value;
 
-    // TODO 2. Проверьте email:
-    // если email пустой — сообщение "Введите электронную почту.";
-    // иначе, если !emailInput.checkValidity() — "Неверный формат email.".
-    // При ошибке: emailInput.setAttribute("aria-invalid", "true");
+loginForm.addEventListener('submit', function(event) {
+  event.preventDefault(); 
+  emailError.textContent = '';
+  passwordError.textContent = '';
+  formStatus.textContent = '';
+  const emailValue = emailInput.value.trim();
+  const passwordValue = passwordInput.value;
+  if (!emailValue) {
+    emailError.textContent = 'Поле email не должно быть пустым.';
+  } else if (!emailRegex.test(emailValue)) {
+    emailError.textContent = 'Введите корректный адрес электронной почты.';
+  }
+  if (passwordValue.length < 8) {
+    passwordError.textContent = 'Пароль должен быть не менее 8 символов.';
+  }
 
-    // TODO 3. Проверьте пароль:
-    // если password.length < 8 — сообщение "Пароль: минимум 8 символов.".
-    // При ошибке: passwordInput.setAttribute("aria-invalid", "true");
-
-    // TODO 4. Если оба сообщения об ошибках пустые, покажите успех:
-    // formStatus.textContent = "Данные корректны. Учебная проверка пройдена.";
-    // formStatus.classList.add("form-status--success");
-  });
-}
+  if (emailError.textContent === '' && passwordError.textContent === '') {
+    formStatus.textContent = 'Данные корректны. Учебная проверка пройдена.';
+  }
+});
