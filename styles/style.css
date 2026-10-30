@@ -147,6 +147,7 @@ input {
   display: flex;
   flex-direction: column;
   gap: 8px;
+  margin: 10px 17px;
 }
 
 /* Подпись над полем */
@@ -293,7 +294,7 @@ input {
   width: 100%;
   min-height: 58px;
 
-  margin-top: 8px;
+  margin-top: 20px;
   padding: 14px 20px;
 
   background: var(--primary);
