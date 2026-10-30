@@ -23,11 +23,46 @@
            password-error, form-status.
            Нужны label, input[type=email], input[type=password],
            button[type=submit], два блока ошибок и блок результата. -->
-        <section class="auth__placeholder">
-          <span class="auth-card__mark">N</span>
-          <h2>Здесь будет ваша форма</h2>
-          <p>Создайте карточку и поля самостоятельно. Откройте макет Figma.</p>
-          <p class="auth__todo">TODO HTML → TODO JS → проверка</p>
+        <section class="auth-card">
+          <div class="auth-card__mark">N</div>
+          <h1 class="auth-card__title">С возвращением!</h1>
+          <p class="auth-card__intro">Введите данные, чтобы продолжить обучение.</p>
+          <form id="login-form" class="auth-form" novalidate>
+            <div class="field">
+            <label class="field__label" for="email">Электронная почта</label>
+            <input
+              placeholder="student@example.com"
+              class="field__input"
+              id="email"
+              name="email"
+              type="email"
+              required
+              aria-describedby="email-error"
+              aria-invalid="false"/>
+            <p class="field__error" id="email-error"></p>
+          </div>
+          <div class="field">
+            <label class="field__label" for="password">Пароль</label>
+            <input
+              class="field__input"
+              id="password"
+              placeholder="Не менее 8 символов"
+              name="password"
+              type="password"
+              autocomplete="current-password"
+              required
+              minlength="8"/>            
+            <p class="field__hint">Не менее 8 символов, включая букву и цифру.</p>
+            <p class="field__error" id="password-error"></p>
+          </div>
+           <label class="remember">
+            <input type="checkbox" id="remember" name="remember" />Запомнить меня
+          </label>
+          <button type="submit" class="submit-button">Войти в аккаунт <span aria-hidden="true">→</span></button> 
+          <p id="form-status" role="status"></p>
+          </form>
+          
+
         </section>
       </main>
     </div>
