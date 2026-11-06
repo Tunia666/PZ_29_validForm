@@ -1,8 +1,4 @@
 "use strict";
-// ПЗ 29, 90 минут. Подготовка и обработчик уже есть.
-// Ваша задача — дописать 4 небольших участка с пометкой TODO.
-// Сначала создайте форму в index.html, иначе form пока равен null.
-
 const form = document.querySelector("#login-form");
 
 if (form) {
@@ -23,21 +19,29 @@ if (form) {
     emailInput.setAttribute("aria-invalid", "false");
     passwordInput.setAttribute("aria-invalid", "false");
 
-    // TODO 1. Получите значения полей:
-    // const email = emailInput.value.trim();
-    // const password = passwordInput.value;
+    // TODO 1. Получите значения полей
+    const email = emailInput.value.trim();
+    const password = passwordInput.value;
 
-    // TODO 2. Проверьте email:
-    // если email пустой — сообщение "Введите электронную почту.";
-    // иначе, если !emailInput.checkValidity() — "Неверный формат email.".
-    // При ошибке: emailInput.setAttribute("aria-invalid", "true");
+    // TODO 2. Проверьте email
+    if (email === "") {
+      emailError.textContent = "Введите электронную почту.";
+      emailInput.setAttribute("aria-invalid", "true");
+    } else if (!emailInput.checkValidity()) {
+      emailError.textContent = "Неверный формат электронной почты.";
+      emailInput.setAttribute("aria-invalid", "true");
+    }
 
-    // TODO 3. Проверьте пароль:
-    // если password.length < 8 — сообщение "Пароль: минимум 8 символов.".
-    // При ошибке: passwordInput.setAttribute("aria-invalid", "true");
+    // TODO 3. Проверьте пароль
+    if (password.length < 8) {
+      passwordError.textContent = "Пароль должен содержать минимум 8 символов.";
+      passwordInput.setAttribute("aria-invalid", "true");
+    }
 
-    // TODO 4. Если оба сообщения об ошибках пустые, покажите успех:
-    // formStatus.textContent = "Данные корректны. Учебная проверка пройдена.";
-    // formStatus.classList.add("form-status--success");
+    // TODO 4. Если ошибок нет
+    if (emailError.textContent === "" && passwordError.textContent === "") {
+      formStatus.textContent = "Данные корректны. Учебная проверка пройдена.";
+      formStatus.classList.add("form-status--success");
+    }
   });
 }
